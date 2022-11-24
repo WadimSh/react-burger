@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+*::-webkit-scrollbar {
+  width: 8px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #2f2f37;
+  border-radius: 6px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #8585ad;
+  border-radius: 6px;
+}
+
+@import url("../node_modules/@ya.praktikum/react-developer-burger-ui-components/dist/ui/common.css");
