@@ -10,11 +10,11 @@
 
 .section::-webkit-scrollbar {
   width: 8px;
-  background-color: #2F2F37;
+  background-color: var(--background-element);
 }
 
 .section::-webkit-scrollbar-thumb {
-  background: #8585AD;
+  background: var(--text-inactive-color);
   height: 50%;
 }
 
@@ -39,10 +39,10 @@
 }
 
 .list::-webkit-scrollbar-track {
-  background-color: #2F2F37;
+  background-color: var(--background-element);
 }
 
 .list::-webkit-scrollbar-thumb {
-  background-color: #8585AD;
+  background-color: var(--text-inactive-color);
   height: 80%;
 }

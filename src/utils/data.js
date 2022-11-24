@@ -11,7 +11,7 @@ export const data = [
      "image":"https://code.s3.yandex.net/react/code/bun-02.png",
      "image_mobile":"https://code.s3.yandex.net/react/code/bun-02-mobile.png",
      "image_large":"https://code.s3.yandex.net/react/code/bun-02-large.png",
-     "__v":0
+     "__v":1
   },
   {
      "_id":"60666c42cc7b410027a1a9b5",
@@ -39,7 +39,7 @@ export const data = [
      "image":"https://code.s3.yandex.net/react/code/meat-01.png",
      "image_mobile":"https://code.s3.yandex.net/react/code/meat-01-mobile.png",
      "image_large":"https://code.s3.yandex.net/react/code/meat-01-large.png",
-     "__v":0
+     "__v":1
   },
   {
      "_id":"60666c42cc7b410027a1a9b7",
@@ -95,7 +95,7 @@ export const data = [
      "image":"https://code.s3.yandex.net/react/code/sauce-04.png",
      "image_mobile":"https://code.s3.yandex.net/react/code/sauce-04-mobile.png",
      "image_large":"https://code.s3.yandex.net/react/code/sauce-04-large.png",
-     "__v":0
+     "__v":1
   },
   {
      "_id":"60666c42cc7b410027a1a9bc",
@@ -123,7 +123,7 @@ export const data = [
      "image":"https://code.s3.yandex.net/react/code/mineral_rings.png",
      "image_mobile":"https://code.s3.yandex.net/react/code/mineral_rings-mobile.png",
      "image_large":"https://code.s3.yandex.net/react/code/mineral_rings-large.png",
-     "__v":0
+     "__v":1
   },
   {
      "_id":"60666c42cc7b410027a1a9ba",
