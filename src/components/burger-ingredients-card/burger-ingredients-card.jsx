@@ -4,15 +4,15 @@ import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-com
 
 import style from './burger-ingredients-card.module.css';
 
-function BurgerIngredientsCard({ el }) {
+function BurgerIngredientsCard({ element }) {
   return (
-    <div className={style.item} key={el._id}>
-      {(el.__v !== 0) ? <Counter count={el.__v} size="default" /> : ""}
-      <img src={el.image} className={style.image} alt={el.name} />
+    <div className={style.item} key={element._id}>
+      {(element.__v !== 0) ? <Counter count={element.__v} size="default" /> : ""}
+      <img src={element.image} className={style.image} alt={element.name} />
       <p className={style.price}>
-        <span className={style.number}>{el.price}</span> <CurrencyIcon type="primary" />
+        <span className={style.number}>{element.price}</span> <CurrencyIcon type="primary" />
       </p>
-      <p className={style.text}>{el.name}</p>
+      <p className={style.text}>{element.name}</p>
     </div>
   );
 }

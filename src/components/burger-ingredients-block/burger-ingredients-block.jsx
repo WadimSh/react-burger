@@ -10,8 +10,8 @@ function BurgerIngredientsBlock({ ingredients, type, name, tabRef }) {
       <h2 className={style.title} ref={tabRef}>{name}</h2>
         <div className={style.grid}>
           {
-            ingredients.filter(item => item.type === type).map((el, index) => (
-              <BurgerIngredientsCard el={el} key={index} />
+            ingredients.filter(item => item.type === type).map((element, index) => (
+              <BurgerIngredientsCard element={element} key={index} />
             ))
           }               
         </div>
