@@ -1,9 +1,11 @@
-import React from 'react';
+import PropTypes from 'prop-types';
 
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
+
 import BurgerConstructorIngredient from '../burger-constructor-ingredient/burger-constructor-ingredient';
 import TotalPrice from '../total-price/total-price';
 
+import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-constructor.module.css';
 
 function BurgerConstructor({ ingredients }) {
@@ -26,7 +28,10 @@ function BurgerConstructor({ ingredients }) {
         {ingredients.map((item, index) => {
           if (item.type !== "bun") {
             return (
-              <BurgerConstructorIngredient ingredient={item} key={index} />
+              <BurgerConstructorIngredient
+                ingredient={item} 
+                key={index} 
+              />
             )
           } else {
             return null
@@ -42,9 +47,15 @@ function BurgerConstructor({ ingredients }) {
           thumbnail={`${bun.image}`}
         />
       </div>
-      <TotalPrice totalPrice={totalPrice}/>
+      <TotalPrice
+       totalPrice={totalPrice}
+      />
     </section>
-  );
+  )
+}
+
+BurgerConstructor.propTypes = {
+  ingredients: PropTypes.arrayOf(messagePropTypes.isRequired).isRequired
 }
 
 export default BurgerConstructor;
