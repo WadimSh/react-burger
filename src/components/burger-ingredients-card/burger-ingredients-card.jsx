@@ -2,6 +2,7 @@ import PropTypes from 'prop-types';
 
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
 
+import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-ingredients-card.module.css';
 
 function BurgerIngredientsCard({ element }) {
@@ -22,7 +23,7 @@ function BurgerIngredientsCard({ element }) {
 }
 
 BurgerIngredientsCard.propTypes = {
-  element: PropTypes.object.isRequired
+  element: PropTypes.objectOf(messagePropTypes).isRequired
 }
                       
 export default BurgerIngredientsCard;

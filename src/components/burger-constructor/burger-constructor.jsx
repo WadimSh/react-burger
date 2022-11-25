@@ -25,18 +25,8 @@ function BurgerConstructor({ ingredients }) {
         />
       </div>
       <ul className={style.stuffingList}>
-        {ingredients.map((item, index) => {
-          if (item.type !== "bun") {
-            return (
-              <BurgerConstructorIngredient
-                ingredient={item} 
-                key={index} 
-              />
-            )
-          } else {
-            return null
-          }
-        })}
+        {ingredients.map((item, index) => item.type !== "bun" && <BurgerConstructorIngredient ingredient={item} key={index} />
+        )}
       </ul>
       <div className={style.bun}>
         <ConstructorElement
