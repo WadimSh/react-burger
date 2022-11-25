@@ -5,32 +5,39 @@ import Main from '../main/main';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
 
+import api from '../../utils/api';
 import style from './App.module.css';
-let url = "https://norma.nomoreparties.space/api/ingredients";
 
 function App() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    fetch(url)
-      .then((res) => res.json())
-      .then((res) => {
-        setData(res.data)
-        console.log(res)
-        console.log(data)
-      });
-  }, []);
+  const [state, setState] = useState({
+    isLoading: true,
+    hasError: false,
+    data: []
+  });
   
-  return (
+  useEffect(() => {
+    setState({ ...state, hasError: false, isLoading: true });
+    api.getIngredients()
+      .then(res => {
+        setState({ data: res.data, hasError: false, isLoading: false })
+      })
+      .catch(e => {
+        setState({ ...state, hasError: true, isLoading: false });
+      });
+  }, []); 
+  
+return (
     <div className={style.App}>
       <AppHeader />
       <Main>
-        <BurgerIngredients
-          ingredients={data}
-        />
-        <BurgerConstructor
-         ingredients={data}
-        />
+        {state.isLoading && 'Загрузка...'}
+        {state.hasError && 'Произошла ошибка'}
+        {!state.isLoading && !state.hasError && (
+          <>
+            <BurgerIngredients ingredients={state.data} />
+            <BurgerConstructor ingredients={state.data} />
+          </>
+        )}
       </Main>
     </div>
   );
