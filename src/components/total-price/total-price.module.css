@@ -1,0 +1,16 @@
+.total {
+  composes: mt-10 from global;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+}
+
+.priceBox {
+  composes: mr-10 from global;
+  display: flex;
+  align-items: center;
+}
+
+.price {
+  composes: pr-2 text text_type_digits-medium from global;
+}

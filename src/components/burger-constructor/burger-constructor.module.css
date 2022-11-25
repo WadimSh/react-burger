@@ -1,0 +1,40 @@
+.section {
+  composes: pt-25 from global;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  max-width: 600px;
+  width: 100%;
+}
+
+.bun {
+  composes: ml-4 from global;
+}
+
+.stuffingList {
+  height: calc(100vh - 516px);
+  overflow-x: hidden;
+  overflow-y: auto;
+  list-style-type: none;
+  padding: 0;
+}
+
+.stuffingList::-webkit-scrollbar {
+  background-color: var(--background-element);
+  width: 8px;
+}
+
+.stuffingList::-webkit-scrollbar-thumb {
+  background-color: var(--text-inactive-color);
+}
+
+.stuffingItem {
+  composes: mb-4 mr-4 ml-4 from global;
+  display: flex;
+  align-items: center;
+}
+
+.stuffingItem:last-of-type {
+  margin-bottom: 0;
+}
