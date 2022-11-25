@@ -1,7 +1,8 @@
 import React from 'react';
 
-import { ConstructorElement, CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
+import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import BurgerConstructorIngredient from '../burger-constructor-ingredient/burger-constructor-ingredient';
+import TotalPrice from '../total-price/total-price';
 
 import style from './burger-constructor.module.css';
 
@@ -9,9 +10,6 @@ function BurgerConstructor({ ingredients }) {
   const main = ingredients.filter((item) => item.type !== "bun");
   const bun = ingredients.find((item) => item.type === "bun");
   const totalPrice = main.reduce((total, current) => total + current.price, bun.price * 2);
-
-  const [active, setActive] = React.useState(false);
-  const clickOnButton = () => setActive(!active);
 
   return (
     <section className={style.section}>
@@ -44,15 +42,7 @@ function BurgerConstructor({ ingredients }) {
           thumbnail={`${bun.image}`}
         />
       </div>
-      <div className={style.total}>
-        <div className={style.priceBox}>
-          <p className={style.price}>{totalPrice}</p>
-          <CurrencyIcon type="primary" />
-        </div>
-        <Button htmlType="button" type="primary" size="large" onClick={() => clickOnButton}>
-				  Оформить заказ
-			  </Button>
-      </div>
+      <TotalPrice totalPrice={totalPrice}/>
     </section>
   );
 }
