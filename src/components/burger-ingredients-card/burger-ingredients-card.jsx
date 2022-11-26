@@ -8,9 +8,13 @@ import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-ingredients-card.module.css';
 
 function BurgerIngredientsCard({ element, clickButton }) {
+  const clickElement = () => {
+    clickButton();
+    localStorage.setItem('element', JSON.stringify(element));
+  }
     
   return (
-    <div className={style.item} key={element._id} onClick={clickButton}>
+    <div className={style.item} key={element._id} onClick={clickElement}>
       {element.__v !== 0 && <Counter count={element.__v} size="default" />}
       <img src={element.image} className={style.image} alt={element.name} />
       <p className={style.price}>

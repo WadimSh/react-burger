@@ -5,7 +5,7 @@ import BurgerIngredientsCard from '../burger-ingredients-card/burger-ingredients
 import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-ingredients-block.module.css';
 
-function BurgerIngredientsBlock({ ingredients, type, name, tabRef, clickButton, close }) {
+function BurgerIngredientsBlock({ ingredients, type, name, tabRef, clickButton }) {
   
   return (
     <>
@@ -16,8 +16,7 @@ function BurgerIngredientsBlock({ ingredients, type, name, tabRef, clickButton, 
             <BurgerIngredientsCard
               element={element}
               key={index}
-              clickButton={clickButton}
-              close={close}
+              clickButton={clickButton}              
             />
           ))
         }               

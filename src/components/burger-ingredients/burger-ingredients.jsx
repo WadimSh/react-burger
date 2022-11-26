@@ -3,12 +3,16 @@ import PropTypes from 'prop-types';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientsBlock from '../burger-ingredients-block/burger-ingredients-block';
+import Modal from '../modal/modal';
+import IngredientDetails from '../ingredient-details/ingredient-details';
 
 import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-ingredients.module.css';
 
-function BurgerIngredients({ ingredients, clickButton }) {
+function BurgerIngredients({ ingredients }) {
+  const [close, setClose] = useState(false);
   const [current, setCurrent] = useState('bun');
+
   const bunRef = useRef();
   const sauceRef = useRef();
   const mainRef = useRef();
@@ -18,8 +22,15 @@ function BurgerIngredients({ ingredients, clickButton }) {
     ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+   const clickButton = () => setClose(!close);
+
   return (
     <section className={style.section}>
+      {close && (
+        <Modal onClose={clickButton}>
+          <IngredientDetails ingredient={JSON.parse(localStorage.getItem('element'))} />
+        </Modal>
+      )}
       <h1 className={style.title}>Соберите бургер</h1>
       <div className={style.tabs}>
         <Tab

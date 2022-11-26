@@ -18,7 +18,6 @@ function Modal({ onClose, children }) {
       document.removeEventListener("keyup", closeEsc);
     };
   }, []);
-
     
 return createPortal (
     <>
