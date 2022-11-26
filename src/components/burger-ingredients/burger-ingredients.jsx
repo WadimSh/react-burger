@@ -7,7 +7,7 @@ import BurgerIngredientsBlock from '../burger-ingredients-block/burger-ingredien
 import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-ingredients.module.css';
 
-function BurgerIngredients({ ingredients }) {
+function BurgerIngredients({ ingredients, clickButton }) {
   const [current, setCurrent] = useState('bun');
   const bunRef = useRef();
   const sauceRef = useRef();
@@ -50,18 +50,21 @@ function BurgerIngredients({ ingredients }) {
           type='bun'
           tabRef={bunRef}
           name='Булки'
+          clickButton={clickButton}
         />
         <BurgerIngredientsBlock
           ingredients={ingredients}
           type='sauce'
           tabRef={sauceRef}
           name='Соусы'
+          clickButton={clickButton}
         />
         <BurgerIngredientsBlock
           ingredients={ingredients}
           type='main'
           tabRef={mainRef}
           name='Начинки'
+          clickButton={clickButton}
         />
       </div>
     </section>
