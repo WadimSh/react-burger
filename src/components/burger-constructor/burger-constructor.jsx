@@ -1,6 +1,8 @@
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
+import Modal from '../modal/modal';
 
 import BurgerConstructorIngredient from '../burger-constructor-ingredient/burger-constructor-ingredient';
 import TotalPrice from '../total-price/total-price';
@@ -9,12 +11,21 @@ import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-constructor.module.css';
 
 function BurgerConstructor({ ingredients }) {
+  const [close, setClose] = useState(false);
+  
   const main = ingredients.filter((item) => item.type !== "bun");
   const bun = ingredients.find((item) => item.type === "bun");
   const totalPrice = main.reduce((total, current) => total + current.price, bun.price * 2);
 
+  const clickButton = () => setClose(!close);
+
   return (
     <section className={style.section}>
+      {close && (
+        <Modal onClose={clickButton}>
+
+        </Modal>
+      )}
       <div className={style.bun}>
         <ConstructorElement
           type="top"
@@ -39,6 +50,7 @@ function BurgerConstructor({ ingredients }) {
       </div>
       <TotalPrice
        totalPrice={totalPrice}
+       buttonClick={clickButton}
       />
     </section>
   )
