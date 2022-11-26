@@ -8,7 +8,7 @@ import style from './modal.module.css';
 
 const modalRoot = document.getElementById("react-modals");
 
-function Modal({ onClose, children }) {
+function Modal({ onClose, header, children }) {
   useEffect(() => {
     const closeEsc = (e) => {
       if (e.key === "Escape" || e.key === "Esc") {onClose()};
@@ -23,7 +23,7 @@ return createPortal (
     <>
     <div className={style.modal}>
       <div className={style.header}>
-        <h3 className={style.title}>Детали ингредиента</h3>
+        <h3 className={style.title}>{header}</h3>
         <CloseIcon type="primary" onClick={onClose}/>
       </div>
       {children}

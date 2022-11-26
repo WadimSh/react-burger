@@ -27,7 +27,7 @@ function BurgerIngredients({ ingredients }) {
   return (
     <section className={style.section}>
       {close && (
-        <Modal onClose={clickButton}>
+        <Modal onClose={clickButton} header={"Детали ингредиента"}>
           <IngredientDetails ingredient={JSON.parse(localStorage.getItem('element'))} />
         </Modal>
       )}

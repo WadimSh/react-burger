@@ -5,6 +5,7 @@ import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-comp
 import BurgerConstructorIngredient from '../burger-constructor-ingredient/burger-constructor-ingredient';
 import TotalPrice from '../total-price/total-price';
 import Modal from '../modal/modal';
+import OrderDetails from '../order-details/order-details';
 
 import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-constructor.module.css';
@@ -20,8 +21,8 @@ function BurgerConstructor({ ingredients }) {
   return (
     <section className={style.section}>
       {close && (
-        <Modal onClose={clickButton}>
-          
+        <Modal onClose={clickButton} header={" "}>
+          <OrderDetails />
         </Modal>
       )}
       <div className={style.bun}>

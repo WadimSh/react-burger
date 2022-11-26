@@ -26,16 +26,18 @@ function App() {
       });
   }, []);
 
+  const { data, isLoading, hasError } = state;
+
 return (
     <div className={style.App}>
       <AppHeader />
       <Main>
-        {state.isLoading && 'Загрузка...'}
-        {state.hasError && 'Произошла ошибка'}
-        {!state.isLoading && !state.hasError && (
+        {isLoading && 'Загрузка...'}
+        {hasError && 'Произошла ошибка'}
+        {!isLoading && !hasError && (
           <>
-            <BurgerIngredients ingredients={state.data} />
-            <BurgerConstructor ingredients={state.data} />
+            <BurgerIngredients ingredients={data} />
+            <BurgerConstructor ingredients={data} />
           </>
         )}
       </Main>
