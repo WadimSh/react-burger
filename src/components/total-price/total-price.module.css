@@ -13,5 +13,5 @@
 }
 
 .price {
-  composes: pr-2 text text_type_digits-medium from global;
+  composes: text text_type_digits-medium pr-2 from global;
 }

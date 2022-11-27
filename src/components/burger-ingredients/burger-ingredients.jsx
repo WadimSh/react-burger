@@ -10,13 +10,13 @@ import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-ingredients.module.css';
 
 function BurgerIngredients({ ingredients }) {
-  const [close, setClose] = useState(false);
-  const [current, setCurrent] = useState('bun');
-  const [element, setElement] = useState({});
-
   const bunRef = useRef();
   const sauceRef = useRef();
   const mainRef = useRef();
+
+  const [close, setClose] = useState(false);
+  const [current, setCurrent] = useState('bun');
+  const [element, setElement] = useState({});
 
   const clickOnTab = (e, ref) => {
     setCurrent(e);

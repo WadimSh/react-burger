@@ -1,3 +1,6 @@
+import PropTypes from 'prop-types';
+
+import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './ingredient-details.module.css';
 
 function IngredientDetails({ ingredient }) {
@@ -26,6 +29,10 @@ return (
       </ul>
     </div>
   );
+}
+
+IngredientDetails.propTypes = {
+  ingredient: PropTypes.objectOf(messagePropTypes).isRequired
 }
 
 export default IngredientDetails;

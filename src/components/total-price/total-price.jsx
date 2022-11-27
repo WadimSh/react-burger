@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from './total-price.module.css';
 
-function TotalPrice({ totalPrice, buttonClick }) {
+function TotalPrice({ totalPrice, clickButton }) {
   
   return (
     <div className={style.total}>
@@ -17,7 +17,7 @@ function TotalPrice({ totalPrice, buttonClick }) {
         htmlType="button"
         type="primary"
         size="large"
-        onClick={buttonClick}
+        onClick={clickButton}
       >
 			  Оформить заказ
 			</Button>
@@ -26,7 +26,8 @@ function TotalPrice({ totalPrice, buttonClick }) {
 }
 
 TotalPrice.propTypes = {
-  totalPrice: PropTypes.number.isRequired
+  totalPrice: PropTypes.number.isRequired,
+  clickButton: PropTypes.func.isRequired
 }
 
 export default TotalPrice;

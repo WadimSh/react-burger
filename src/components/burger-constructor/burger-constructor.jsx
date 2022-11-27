@@ -49,7 +49,7 @@ function BurgerConstructor({ ingredients }) {
       </div>
       <TotalPrice
        totalPrice={totalPrice}
-       buttonClick={clickButton}
+       clickButton={clickButton}
       />
     </section>
   )

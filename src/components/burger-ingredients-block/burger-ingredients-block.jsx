@@ -33,7 +33,9 @@ BurgerIngredientsCard.propTypes = {
   tabRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(Element) })
-  ])
+  ]),
+  clickButton: PropTypes.func,
+  handleElement: PropTypes.func
 }
 
 export default BurgerIngredientsBlock;
