@@ -12,6 +12,7 @@ import style from './burger-ingredients.module.css';
 function BurgerIngredients({ ingredients }) {
   const [close, setClose] = useState(false);
   const [current, setCurrent] = useState('bun');
+  const [element, setElement] = useState({});
 
   const bunRef = useRef();
   const sauceRef = useRef();
@@ -22,13 +23,15 @@ function BurgerIngredients({ ingredients }) {
     ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-   const clickButton = () => setClose(!close);
+  const handleElement = (item) => setElement(item);
+
+  const clickButton = () => setClose(!close);
 
   return (
     <section className={style.section}>
       {close && (
         <Modal onClose={clickButton} header={"Детали ингредиента"}>
-          <IngredientDetails ingredient={JSON.parse(localStorage.getItem('element'))} />
+          <IngredientDetails ingredient={element} />
         </Modal>
       )}
       <h1 className={style.title}>Соберите бургер</h1>
@@ -62,6 +65,7 @@ function BurgerIngredients({ ingredients }) {
           tabRef={bunRef}
           name='Булки'
           clickButton={clickButton}
+          handleElement={handleElement}
         />
         <BurgerIngredientsBlock
           ingredients={ingredients}
@@ -69,6 +73,7 @@ function BurgerIngredients({ ingredients }) {
           tabRef={sauceRef}
           name='Соусы'
           clickButton={clickButton}
+          handleElement={handleElement}
         />
         <BurgerIngredientsBlock
           ingredients={ingredients}
@@ -76,6 +81,7 @@ function BurgerIngredients({ ingredients }) {
           tabRef={mainRef}
           name='Начинки'
           clickButton={clickButton}
+          handleElement={handleElement}
         />
       </div>
     </section>

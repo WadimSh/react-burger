@@ -1,5 +1,3 @@
-import { INGREDIENTS_URL } from './constants';
-
 class Api {
   constructor({ baseUrl }) {
     this.url = baseUrl;
@@ -26,7 +24,7 @@ class Api {
 }
     
 const api = new Api({
-  baseUrl: `${INGREDIENTS_URL}`,
+  baseUrl: "https://norma.nomoreparties.space/api/ingredients",
 });
 
 export default api;

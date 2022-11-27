@@ -7,10 +7,10 @@ import Modal from '../modal/modal';
 import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-ingredients-card.module.css';
 
-function BurgerIngredientsCard({ element, clickButton }) {
+function BurgerIngredientsCard({ element, clickButton, handleElement }) {
   const clickElement = () => {
+    handleElement(element)
     clickButton();
-    localStorage.setItem('element', JSON.stringify(element));
   }
     
   return (
