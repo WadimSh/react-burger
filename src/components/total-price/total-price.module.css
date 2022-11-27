@@ -3,6 +3,7 @@
   display: flex;
   justify-content: flex-end;
   width: 100%;
+  margin-top: auto;
 }
 
 .priceBox {
@@ -12,5 +13,5 @@
 }
 
 .price {
-  composes: pr-2 text text_type_digits-medium from global;
+  composes: text text_type_digits-medium pr-2 from global;
 }

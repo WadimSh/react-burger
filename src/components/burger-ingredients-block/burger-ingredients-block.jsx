@@ -5,7 +5,7 @@ import BurgerIngredientsCard from '../burger-ingredients-card/burger-ingredients
 import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-ingredients-block.module.css';
 
-function BurgerIngredientsBlock({ ingredients, type, name, tabRef }) {
+function BurgerIngredientsBlock({ ingredients, type, name, tabRef, clickButton, handleElement }) {
   
   return (
     <>
@@ -16,6 +16,8 @@ function BurgerIngredientsBlock({ ingredients, type, name, tabRef }) {
             <BurgerIngredientsCard
               element={element}
               key={index}
+              clickButton={clickButton}
+              handleElement={handleElement}
             />
           ))
         }               
@@ -31,7 +33,9 @@ BurgerIngredientsCard.propTypes = {
   tabRef: PropTypes.oneOfType([
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(Element) })
-  ])
+  ]),
+  clickButton: PropTypes.func,
+  handleElement: PropTypes.func
 }
 
 export default BurgerIngredientsBlock;

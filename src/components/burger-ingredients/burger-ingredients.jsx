@@ -3,23 +3,37 @@ import PropTypes from 'prop-types';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientsBlock from '../burger-ingredients-block/burger-ingredients-block';
+import Modal from '../modal/modal';
+import IngredientDetails from '../ingredient-details/ingredient-details';
 
 import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-ingredients.module.css';
 
 function BurgerIngredients({ ingredients }) {
-  const [current, setCurrent] = useState('bun');
   const bunRef = useRef();
   const sauceRef = useRef();
   const mainRef = useRef();
+
+  const [close, setClose] = useState(false);
+  const [current, setCurrent] = useState('bun');
+  const [element, setElement] = useState({});
 
   const clickOnTab = (e, ref) => {
     setCurrent(e);
     ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
+  const handleElement = (item) => setElement(item);
+
+  const clickButton = () => setClose(!close);
+
   return (
     <section className={style.section}>
+      {close && (
+        <Modal onClose={clickButton} header={"Детали ингредиента"}>
+          <IngredientDetails ingredient={element} />
+        </Modal>
+      )}
       <h1 className={style.title}>Соберите бургер</h1>
       <div className={style.tabs}>
         <Tab
@@ -50,18 +64,24 @@ function BurgerIngredients({ ingredients }) {
           type='bun'
           tabRef={bunRef}
           name='Булки'
+          clickButton={clickButton}
+          handleElement={handleElement}
         />
         <BurgerIngredientsBlock
           ingredients={ingredients}
           type='sauce'
           tabRef={sauceRef}
           name='Соусы'
+          clickButton={clickButton}
+          handleElement={handleElement}
         />
         <BurgerIngredientsBlock
           ingredients={ingredients}
           type='main'
           tabRef={mainRef}
           name='Начинки'
+          clickButton={clickButton}
+          handleElement={handleElement}
         />
       </div>
     </section>
@@ -69,7 +89,7 @@ function BurgerIngredients({ ingredients }) {
 }
 
 BurgerIngredients.propTypes = {
-  ingredients: PropTypes.arrayOf(messagePropTypes)
+  ingredients: PropTypes.arrayOf(messagePropTypes.isRequired).isRequired
 }
 
 export default BurgerIngredients;

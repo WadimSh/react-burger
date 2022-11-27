@@ -13,7 +13,8 @@
 }
 
 .stuffingList {
-  height: calc(100vh - 516px);
+  max-height: calc(100vh - 516px);
+  width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   list-style-type: none;
