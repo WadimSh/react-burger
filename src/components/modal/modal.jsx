@@ -12,7 +12,7 @@ const modalRoot = document.getElementById("react-modals");
 function Modal({ onClose, header, children }) {
   useEffect(() => {
     const closeEsc = (e) => {
-      (e.key === "Escape" || e.key === "Esc") && onClose();
+      e.keyCode === 27 && onClose();
     }
     document.addEventListener("keyup", closeEsc);
     return () => {
@@ -25,7 +25,9 @@ return createPortal (
     <div className={style.modal}>
       <div className={style.header}>
         <h3 className={style.title}>{header}</h3>
-        <CloseIcon type="primary" onClick={onClose}/>
+        <div className={style.div}>
+          <CloseIcon type="primary" onClick={onClose}/>
+        </div>
       </div>
       {children}
     </div>

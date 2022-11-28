@@ -10,16 +10,16 @@ import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-ingredients.module.css';
 
 function BurgerIngredients({ ingredients }) {
+  const [current, setCurrent] = useState('bun');
   const bunRef = useRef();
   const sauceRef = useRef();
   const mainRef = useRef();
 
   const [close, setClose] = useState(false);
-  const [current, setCurrent] = useState('bun');
   const [element, setElement] = useState({});
 
-  const clickOnTab = (e, ref) => {
-    setCurrent(e);
+  const clickTab = (evt, ref) => {
+    setCurrent(evt);
     ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
@@ -39,38 +39,38 @@ function BurgerIngredients({ ingredients }) {
         <Tab
           value="bun"
           active={current === 'bun'}
-          onClick={(e) => clickOnTab(e, bunRef)}
+          onClick={(evt) => clickTab(evt, bunRef)}
         >
           Булки
         </Tab>
         <Tab
           value="sauce"
           active={current === 'sauce'}
-          onClick={(e) => clickOnTab(e, sauceRef)}
+          onClick={(evt) => clickTab(evt, sauceRef)}
         >
           Соусы
         </Tab>
         <Tab
           value="main"
           active={current === 'main'}
-          onClick={(e) => clickOnTab(e, mainRef)}
+          onClick={(evt) => clickTab(evt, mainRef)}
         >
           Начинки
         </Tab>
       </div>
       <div className={style.list}>
         <BurgerIngredientsBlock
+          tabRef={bunRef}
           ingredients={ingredients}
           type='bun'
-          tabRef={bunRef}
           name='Булки'
           clickButton={clickButton}
           handleElement={handleElement}
         />
         <BurgerIngredientsBlock
+          tabRef={sauceRef}
           ingredients={ingredients}
           type='sauce'
-          tabRef={sauceRef}
           name='Соусы'
           clickButton={clickButton}
           handleElement={handleElement}
