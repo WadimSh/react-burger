@@ -11,7 +11,7 @@ class Api {
   }
 
   getIngredients() {
-    return fetch(`${this.url}`, {
+    return fetch(`${this.url}/ingredients`, {
       headers: {
         "Content-Type": "application.json",
       },
@@ -21,10 +21,25 @@ class Api {
       console.log(err);
     });
   }
+
+  postOrderDetails(data) {
+    return fetch(`${this.url}/orders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application.json",
+      },
+      body: JSON.stringify({ ingredients: data }),
+    })
+    .then(this._checkResponse)
+    .catch((err) => {
+      console.log(err);
+    });
+  }
+
 }
     
 const api = new Api({
-  baseUrl: "https://norma.nomoreparties.space/api/ingredients",
+  baseUrl: "https://norma.nomoreparties.space/api",
 });
 
 export default api;

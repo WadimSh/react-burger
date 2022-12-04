@@ -1,12 +1,10 @@
 import { useState, useRef } from 'react';
-//import PropTypes from 'prop-types';
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientsBlock from '../burger-ingredients-block/burger-ingredients-block';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
 
-//import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-ingredients.module.css';
 
 function BurgerIngredients() {
@@ -84,9 +82,5 @@ function BurgerIngredients() {
     </section>
   )
 }
-
-//BurgerIngredients.propTypes = {
-//  ingredients: PropTypes.arrayOf(messagePropTypes.isRequired).isRequired
-//}
 
 export default BurgerIngredients;
