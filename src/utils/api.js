@@ -16,10 +16,7 @@ class Api {
         "Content-Type": "application/json",
       },
     })
-    .then(res => this._checkResponse(res))
-    .catch((err) => {
-      console.log(err);
-    });
+    .then(res => this._checkResponse(res));
   }
 
   postOrderDetails(data) {
@@ -30,10 +27,7 @@ class Api {
       },
       body: JSON.stringify({ ingredients: data }),
     })
-    .then(this._checkResponse)
-    .catch((err) => {
-      console.log(err);
-    });
+    .then(res => this._checkResponse(res));
   }
 
 }
