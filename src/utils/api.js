@@ -13,7 +13,7 @@ class Api {
   getIngredients() {
     return fetch(`${this.url}/ingredients`, {
       headers: {
-        "Content-Type": "application.json",
+        "Content-Type": "application/json",
       },
     })
     .then(res => this._checkResponse(res))
@@ -26,7 +26,7 @@ class Api {
     return fetch(`${this.url}/orders`, {
       method: "POST",
       headers: {
-        "Content-Type": "application.json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify({ ingredients: data }),
     })
