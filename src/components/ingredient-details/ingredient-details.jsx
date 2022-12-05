@@ -6,7 +6,7 @@ import style from './ingredient-details.module.css';
 function IngredientDetails({ ingredient }) {
     
 return (
-    <div className={style.wrapper} key={ingredient._id}>
+    <div className={style.wrapper}>
       <img className={style.img} src={ingredient.image} alt={ingredient.name} />
       <h2 className={style.title}>{ingredient.name}</h2>
       <ul className={style.list}>
@@ -32,7 +32,7 @@ return (
 }
 
 IngredientDetails.propTypes = {
-  ingredient: PropTypes.oneOfType([PropTypes.object, messagePropTypes])
+  ingredient: PropTypes.objectOf(messagePropTypes).isRequired
 }
 
 export default IngredientDetails;
