@@ -4,6 +4,7 @@ import AppHeader from '../app-header/app-header';
 import Main from '../main/main';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
+import { CurrentContext } from '../../contexts/context';
 
 import api from '../../utils/api';
 import style from './App.module.css';
@@ -26,21 +27,23 @@ function App() {
       });
   }, []);
 
-  const { data, isLoading, hasError } = state;
+  const { isLoading, hasError } = state;
 
-return (
+  return (
     <div className={style.App}>
       <AppHeader />
-      <Main>
-        {isLoading && 'Загрузка...'}
-        {hasError && 'Произошла ошибка'}
-        {!isLoading && !hasError && (
-          <>
-            <BurgerIngredients ingredients={data} />
-            <BurgerConstructor ingredients={data} />
-          </>
-        )}
-      </Main>
+      <CurrentContext.Provider value={state}>
+        <Main>
+          {isLoading && 'Загрузка...'}
+          {hasError && 'Произошла ошибка'}
+          {!isLoading && !hasError && (
+            <>
+              <BurgerIngredients />
+              <BurgerConstructor />
+            </>
+          )}
+        </Main>
+      </CurrentContext.Provider>
     </div>
   );
 }

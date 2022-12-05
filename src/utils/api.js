@@ -11,20 +11,29 @@ class Api {
   }
 
   getIngredients() {
-    return fetch(`${this.url}`, {
+    return fetch(`${this.url}/ingredients`, {
       headers: {
-        "Content-Type": "application.json",
+        "Content-Type": "application/json",
       },
     })
-    .then(res => this._checkResponse(res))
-    .catch((err) => {
-      console.log(err);
-    });
+    .then(res => this._checkResponse(res));
   }
+
+  postOrderDetails(data) {
+    return fetch(`${this.url}/orders`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ ingredients: data }),
+    })
+    .then(res => this._checkResponse(res));
+  }
+
 }
     
 const api = new Api({
-  baseUrl: "https://norma.nomoreparties.space/api/ingredients",
+  baseUrl: "https://norma.nomoreparties.space/api",
 });
 
 export default api;

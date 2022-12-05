@@ -12,7 +12,7 @@ const modalRoot = document.getElementById("react-modals");
 function Modal({ onClose, header, children }) {
   useEffect(() => {
     const closeEsc = (e) => {
-      e.keyCode === 27 && onClose();
+      e.key === 'Escape' && onClose();
     }
     document.addEventListener("keyup", closeEsc);
     return () => {
