@@ -1,49 +1,36 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useSelector, useDispatch } from "react-redux";
 
 import AppHeader from '../app-header/app-header';
 import Main from '../main/main';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-import { CurrentContext } from '../../contexts/context';
 
-import api from '../../utils/api';
+import { getIngredientsBurger } from '../../services/actions/actions';
 import style from './App.module.css';
 
 function App() {
-  const [state, setState] = useState({
-    isLoading: true,
-    hasError: false,
-    data: []
-  });
+  const dispatch = useDispatch();
+  const isLoading = useSelector((store) => store.ingredientsBurger.isLoading);
+  const hasError = useSelector((store) => store.ingredientsBurger.hasError);
   
   useEffect(() => {
-    setState({ ...state, hasError: false, isLoading: true });
-    api.getIngredients()
-      .then(res => {
-        setState({ data: res.data, hasError: false, isLoading: false })
-      })
-      .catch(err => {
-        setState({ ...state, hasError: true, isLoading: false });
-      });
-  }, []);
-
-  const { isLoading, hasError } = state;
-
+    dispatch(getIngredientsBurger());
+  }, [dispatch]);
+  
   return (
     <div className={style.App}>
       <AppHeader />
-      <CurrentContext.Provider value={state}>
-        <Main>
-          {isLoading && 'Загрузка...'}
-          {hasError && 'Произошла ошибка'}
-          {!isLoading && !hasError && (
-            <>
-              <BurgerIngredients />
-              <BurgerConstructor />
-            </>
-          )}
-        </Main>
-      </CurrentContext.Provider>
+      <Main>
+        {isLoading && 'Загрузка...'}
+        {hasError && 'Произошла ошибка'}
+        {!isLoading && !hasError && (
+          <>
+            <BurgerIngredients />
+            <BurgerConstructor />
+          </>
+        )}
+      </Main>
     </div>
   );
 }

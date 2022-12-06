@@ -16,7 +16,6 @@ export const DELETE_INGREDIENT_DATA = 'DELETE_INGREDIENT_DATA';
 export const GET_ORDER_NUMBER_SUCCESS = 'GET_ORDER_NUMBER_SUCCESS';
 export const GET_ORDER_NUMBER_REQUEST = 'GET_ORDER_NUMBER_REQUEST';
 export const GET_ORDER_NUMBER_FAILED = 'GET_ORDER_NUMBER_FAILED';
-export const RESET_ORDER_NUMBER = 'RESET_ORDER_NUMBER';
 
 export function getIngredientsBurger() {
   return function(dispatch) {
@@ -38,12 +37,12 @@ export function getIngredientsBurger() {
   }
 };
 
-export function postOrderBurger() {
+export function postOrderBurger(order) {
   return function(dispatch) {
     dispatch({
       type: GET_ORDER_NUMBER_REQUEST
     });
-    api.getIngredients()
+    api.postOrderDetails(order)
       .then((res) => {
         dispatch({
           type: GET_ORDER_NUMBER_SUCCESS,

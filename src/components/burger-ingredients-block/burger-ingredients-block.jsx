@@ -1,14 +1,13 @@
-import { useContext } from 'react';
+import { useSelector } from "react-redux";
 import PropTypes from 'prop-types';
 
 import BurgerIngredientsCard from '../burger-ingredients-card/burger-ingredients-card';
-import { CurrentContext } from '../../contexts/context';
 
 import style from './burger-ingredients-block.module.css';
 
 function BurgerIngredientsBlock({ type, name, tabRef, clickButton, handleElement }) {
-  const { data } = useContext(CurrentContext);
-
+  const data = useSelector((store) => store.ingredientsBurger.data);
+  
   return (
     <>
       <h2 className={style.title} ref={tabRef}>{name}</h2>
