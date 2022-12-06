@@ -1,4 +1,4 @@
-import { useState, useMemo } from 'react';
+import { useMemo } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -6,29 +6,29 @@ import BurgerConstructorIngredient from '../burger-constructor-ingredient/burger
 import TotalPrice from '../total-price/total-price';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
-
-import { postOrderBurger } from '../../services/actions/actions';
+import { postOrderBurger, OPEN_ORDER_MODAL, CLOSE_ORDER_MODAL } from '../../services/actions/actions';
 import style from './burger-constructor.module.css';
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
   const { bun, ingredients } = useSelector((store) => store.currentBurger);
+  const { modal } = useSelector((store) => store.orderNumber);
 
-  const [close, setClose] = useState(false);
-
-  const clickButton = () => setClose(!close);
-  const indexIngredients = ["609646e4dc916e00276b286e","60d3b41abdacab0026a733cd","609646e4dc916e00276b286e"]
-  //useMemo(() => [bun, ...ingredients].map((item) => item._id), [bun, ingredients]);
+  const clickButton = () => {
+    dispatch({ type: CLOSE_ORDER_MODAL });
+  };
+  const indexIngredients = useMemo(() => [bun, ...ingredients].map((item) => item._id), [bun, ingredients]);
   
-  const totalPrice = (bun && ingredients) > 0 ? ingredients.reduce((total, current) => total + current.price, bun.price * 2) : 0;
+  const totalPrice = useMemo(() =>(bun && ingredients) > 0 ? ingredients.reduce((total, current) => total + current.price, bun.price * 2) : 0);
    
   const handleOrder = () => {
     dispatch(postOrderBurger(indexIngredients));
+    dispatch({ type: OPEN_ORDER_MODAL });
   }
 
   return (
     <section className={style.section}>
-      {close && (
+      {modal && (
         <Modal onClose={clickButton} header={" "}>
           <OrderDetails />
         </Modal>

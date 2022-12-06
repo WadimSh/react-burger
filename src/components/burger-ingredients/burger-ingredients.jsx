@@ -1,10 +1,11 @@
 import { useState, useRef } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
 import BurgerIngredientsBlock from '../burger-ingredients-block/burger-ingredients-block';
 import Modal from '../modal/modal';
 import IngredientDetails from '../ingredient-details/ingredient-details';
-
+import { DELETE_INGREDIENT_DATA, ADD_INGREDIENT_DATA } from '../../services/actions/actions';
 import style from './burger-ingredients.module.css';
 
 function BurgerIngredients() {
@@ -13,23 +14,27 @@ function BurgerIngredients() {
   const sauceRef = useRef();
   const mainRef = useRef();
 
-  const [close, setClose] = useState(false);
-  const [element, setElement] = useState({});
+  const dispatch = useDispatch();
+  const { modal } = useSelector((store) => store.ingredientData);
 
   const clickTab = (evt, ref) => {
     setCurrent(evt);
     ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
-  const handleElement = (item) => setElement(item);
+  const handleElement = (ingredient) => {
+    dispatch({ type: ADD_INGREDIENT_DATA, ingredient });
+  };
 
-  const clickButton = () => setClose(!close);
+  const clickButton = () => {
+    dispatch({ type: DELETE_INGREDIENT_DATA });
+  };
 
   return (
     <section className={style.section}>
-      {close && (
+      {modal && (
         <Modal onClose={clickButton} header={"Детали ингредиента"}>
-          <IngredientDetails ingredient={element} />
+          <IngredientDetails />
         </Modal>
       )}
       <h1 className={style.title}>Соберите бургер</h1>
@@ -61,21 +66,18 @@ function BurgerIngredients() {
           tabRef={bunRef}
           type='bun'
           name='Булки'
-          clickButton={clickButton}
           handleElement={handleElement}
         />
         <BurgerIngredientsBlock
           tabRef={sauceRef}
           type='sauce'
           name='Соусы'
-          clickButton={clickButton}
           handleElement={handleElement}
         />
         <BurgerIngredientsBlock
           type='main'
           tabRef={mainRef}
           name='Начинки'
-          clickButton={clickButton}
           handleElement={handleElement}
         />
       </div>

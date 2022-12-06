@@ -5,12 +5,11 @@ import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-com
 import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-ingredients-card.module.css';
 
-function BurgerIngredientsCard({ element, clickButton, handleElement }) {
+function BurgerIngredientsCard({ element, handleElement }) {
   const clickElement = () => {
     handleElement(element)
-    clickButton();
   }
-    
+   
   return (
     <div className={style.item} key={element._id} onClick={clickElement}>
       {element.__v !== 0 && <Counter count={element.__v} size="default" />}
@@ -28,7 +27,6 @@ function BurgerIngredientsCard({ element, clickButton, handleElement }) {
 
 BurgerIngredientsCard.propTypes = {
   element: PropTypes.objectOf(messagePropTypes).isRequired,
-  clickButton: PropTypes.func.isRequired,
   handleElement: PropTypes.func.isRequired
 }
                       

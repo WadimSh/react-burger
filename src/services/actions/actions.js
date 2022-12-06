@@ -16,6 +16,8 @@ export const DELETE_INGREDIENT_DATA = 'DELETE_INGREDIENT_DATA';
 export const GET_ORDER_NUMBER_SUCCESS = 'GET_ORDER_NUMBER_SUCCESS';
 export const GET_ORDER_NUMBER_REQUEST = 'GET_ORDER_NUMBER_REQUEST';
 export const GET_ORDER_NUMBER_FAILED = 'GET_ORDER_NUMBER_FAILED';
+export const OPEN_ORDER_MODAL = 'OPEN_ORDER_MODAL';
+export const CLOSE_ORDER_MODAL = 'CLOSE_ORDER_MODAL';
 
 export function getIngredientsBurger() {
   return function(dispatch) {

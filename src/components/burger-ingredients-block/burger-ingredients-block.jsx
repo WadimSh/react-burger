@@ -5,9 +5,9 @@ import BurgerIngredientsCard from '../burger-ingredients-card/burger-ingredients
 
 import style from './burger-ingredients-block.module.css';
 
-function BurgerIngredientsBlock({ type, name, tabRef, clickButton, handleElement }) {
+function BurgerIngredientsBlock({ type, name, tabRef, handleElement }) {
   const data = useSelector((store) => store.ingredientsBurger.data);
-  
+   
   return (
     <>
       <h2 className={style.title} ref={tabRef}>{name}</h2>
@@ -17,7 +17,6 @@ function BurgerIngredientsBlock({ type, name, tabRef, clickButton, handleElement
             <BurgerIngredientsCard
               element={element}
               key={index}
-              clickButton={clickButton}
               handleElement={handleElement}
             />
           ))
@@ -34,7 +33,6 @@ BurgerIngredientsCard.propTypes = {
     PropTypes.func,
     PropTypes.shape({ current: PropTypes.instanceOf(Element) })
   ]),
-  clickButton: PropTypes.func,
   handleElement: PropTypes.func
 }
 

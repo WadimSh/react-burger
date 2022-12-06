@@ -1,23 +1,20 @@
 import {
   GET_ORDER_NUMBER_SUCCESS,
-  GET_ORDER_NUMBER_REQUEST,
-  GET_ORDER_NUMBER_FAILED
+  OPEN_ORDER_MODAL,
+  CLOSE_ORDER_MODAL
 } from '../actions/actions';
 
 const initialState = {
   modal: false,
-  order: null,
-  isOrderLoading: false,
-  hasOrderError: false
+  order: null
 };
 
 export const orderReducer = (state = initialState, action) => {
   switch (action.type) {
-    case GET_ORDER_NUMBER_REQUEST: {
+    case OPEN_ORDER_MODAL: {
       return {
         ...state,
-        isOrderLoading: true,
-        hasOrderError: false
+        modal: true
       }
     }
     case GET_ORDER_NUMBER_SUCCESS: {
@@ -28,11 +25,10 @@ export const orderReducer = (state = initialState, action) => {
         order: action.orderNumber
       }
     }
-    case GET_ORDER_NUMBER_FAILED: {
+    case CLOSE_ORDER_MODAL: {
       return {
         ...state,
-        isOrderLoading: false,
-        hasOrderError: true,
+        modal: false,
         order: null
       }
     }

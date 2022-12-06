@@ -1,10 +1,10 @@
-import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
-import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './ingredient-details.module.css';
 
-function IngredientDetails({ ingredient }) {
-    
+function IngredientDetails() {
+const { ingredient } = useSelector((store) => store.ingredientData);
+  
 return (
     <div className={style.wrapper} key={ingredient._id}>
       <img className={style.img} src={ingredient.image} alt={ingredient.name} />
@@ -29,10 +29,6 @@ return (
       </ul>
     </div>
   );
-}
-
-IngredientDetails.propTypes = {
-  ingredient: PropTypes.oneOfType([PropTypes.object, messagePropTypes])
 }
 
 export default IngredientDetails;

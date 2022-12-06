@@ -1,6 +1,6 @@
 import {
   ADD_INGREDIENT_DATA,
-  DELETE_INGREDIENT_DATA,
+  DELETE_INGREDIENT_DATA
 } from '../actions/actions';
 
 const initialState = {
@@ -21,7 +21,7 @@ export const ingredientReducer = (state = initialState, action) => {
       return {
         ...state,
         modal: false,
-        ingredient: {}
+        ingredient: null
       }
     }
     default: {
