@@ -5,7 +5,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import thunk from 'redux-thunk';
 import './index.css';
 import App from './components/app/App.jsx';
-import rootReducer from './services/reducers/rootReducer';
+import rootReducer from './services/reducers/root-reducer';
 import reportWebVitals from './reportWebVitals';
 
 const store = configureStore({

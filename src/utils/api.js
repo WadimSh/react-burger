@@ -12,6 +12,7 @@ class Api {
 
   getIngredients() {
     return fetch(`${this.url}/ingredients`, {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
       },
