@@ -6,7 +6,7 @@ function IngredientDetails() {
 const { ingredient } = useSelector((store) => store.ingredientData);
   
 return (
-    <div className={style.wrapper} key={ingredient._id}>
+    <div className={style.wrapper}>
       <img className={style.img} src={ingredient.image} alt={ingredient.name} />
       <h2 className={style.title}>{ingredient.name}</h2>
       <ul className={style.list}>

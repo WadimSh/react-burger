@@ -70,7 +70,7 @@ function BurgerConstructor() {
       {ingredients.length > 0 ? (
         <ul className={style.list}>
         {ingredients.map((item, index) => <BurgerConstructorIngredient item={item} index={index} key={item.id} />
-        )}
+      )}
       </ul>
       ) : (
         <div className={style.unactive}>Перетащите сюда ингредиенты</div>
@@ -87,8 +87,8 @@ function BurgerConstructor() {
         />
       </div>) : (
         <div className={style.botton}>Перетащите сюда булку</div>
-      )}      
-
+      )}
+      
       <TotalPrice
        totalPrice={total}
        clickButton={handleOrder}

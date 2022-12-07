@@ -14,12 +14,12 @@ class Api {
     return fetch(`${this.url}/ingredients`, {
       method: "GET",
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type": "application.json",
       },
     })
     .then(res => this._checkResponse(res));
   }
-
+  
   postOrderDetails(data) {
     return fetch(`${this.url}/orders`, {
       method: "POST",
@@ -30,7 +30,7 @@ class Api {
     })
     .then(res => this._checkResponse(res));
   }
-
+  
 }
     
 const api = new Api({

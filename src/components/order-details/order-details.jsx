@@ -8,7 +8,7 @@ const orderNumber = useSelector((store) => store.orderNumber.order);
 
 return (
   <div className={style.wrapper}>
-    <h2 className={style.title}>{orderNumber}</h2>
+    <h2 className={style.title}>034536</h2>
     <p className={style.subtitle}>идентификатор заказа</p>
     <img className={style.img} src={done} alt="иконка" />
     <p className={style.text}>Ваш заказ начали готовить</p>
