@@ -24,7 +24,7 @@
   text-align: center;
 }
 
-.unactiveTop {
+.top {
   composes: ml-4 from global;
   box-sizing: border-box;
   padding: 28px 24px;
@@ -40,7 +40,7 @@
   text-align: center;
 }
 
-.unactiveBotton{
+.botton{
   composes: ml-4 from global;
   box-sizing: border-box;
   padding: 28px 24px;
@@ -60,7 +60,7 @@
   composes: ml-4 from global;
 }
 
-.stuffingList {
+.list {
   max-height: calc(100vh - 516px);
   width: 100%;
   overflow-x: hidden;
@@ -69,22 +69,22 @@
   padding: 0;
 }
 
-.stuffingList::-webkit-scrollbar {
+.list::-webkit-scrollbar {
   background-color: var(--background-element);
   width: 8px;
 }
 
-.stuffingList::-webkit-scrollbar-thumb {
+.list::-webkit-scrollbar-thumb {
   background-color: var(--text-inactive-color);
 }
 
-.stuffingItem {
+.item {
   composes: mb-4 mr-4 ml-4 from global;
   display: flex;
   align-items: center;
 }
 
-.stuffingItem:last-of-type {
+.item:last-of-type {
   margin-bottom: 0;
 }
 

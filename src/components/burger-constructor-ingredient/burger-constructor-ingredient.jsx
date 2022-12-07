@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { useDispatch } from "react-redux";
 import { useDrag, useDrop } from "react-dnd";
-//import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { MOVE_INGREDIENT, DELETE_INGREDIENT } from '../../services/actions/actions';
 import { ConstructorElement, DragIcon } from "@ya.praktikum/react-developer-burger-ui-components";
@@ -11,9 +11,8 @@ function BurgerConstructorIngredient({ item, index }) {
   const dispatch = useDispatch();
   const ref = useRef();
   const { image, id, price, name } = item;
-  console.log(item)
+  
   const onDelete = (id) => {
-    console.log(id)
     dispatch({ type: DELETE_INGREDIENT, id });
   };
 
@@ -47,7 +46,7 @@ function BurgerConstructorIngredient({ item, index }) {
 
 
   return (
-    <li className={style.stuffingItem} style={{ opacity }} ref={ref}>
+    <li className={style.item} style={{ opacity }} ref={ref}>
       <DragIcon
        type="primary"
       />
@@ -61,8 +60,9 @@ function BurgerConstructorIngredient({ item, index }) {
   )
 }
 
-//BurgerConstructorIngredient.propTypes = {
-//  ingredient: PropTypes.object.isRequired
-//}
+BurgerConstructorIngredient.propTypes = {
+  item: PropTypes.object.isRequired,
+  index: PropTypes.number.isRequired
+}
 
 export default BurgerConstructorIngredient;

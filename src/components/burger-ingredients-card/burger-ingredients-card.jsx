@@ -4,7 +4,6 @@ import { useDrag } from "react-dnd";
 import PropTypes from 'prop-types';
 
 import {Counter, CurrencyIcon} from '@ya.praktikum/react-developer-burger-ui-components';
-
 import { messagePropTypes } from '../../utils/messagePropTypes';
 import style from './burger-ingredients-card.module.css';
 
@@ -16,7 +15,7 @@ function BurgerIngredientsCard({ element, handleElement }) {
     type: "ingredient",
     item: { element },
     collect: (monitor) => ({
-      opacity: monitor.isDragging() ? 0.3 : 1,
+      opacity: monitor.isDragging() ? .8 : 1,
     }),
   });
 
@@ -24,8 +23,8 @@ function BurgerIngredientsCard({ element, handleElement }) {
     for (let { _id } of ingredients) if (_id === element._id) count++;
     if (bun && bun._id === element._id) return 2;
     return count;
-    }, [bun, ingredients, element._id]
-  );
+    },
+  [bun, ingredients, element._id]);
    
   return (
     <div className={style.item} key={element._id} onClick={clickElement} style={{ opacity }} ref={dragRef}>

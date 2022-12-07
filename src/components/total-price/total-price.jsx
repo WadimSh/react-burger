@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import PropTypes from 'prop-types';
 
 import { CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-components";
 import style from './total-price.module.css';
@@ -29,9 +30,9 @@ function TotalPrice({ totalPrice, clickButton }) {
   )
 }
 
-//TotalPrice.propTypes = {
-//  totalPrice: PropTypes.number.isRequired,
-//  clickButton: PropTypes.func.isRequired
-//}
+TotalPrice.propTypes = {
+  totalPrice: PropTypes.number.isRequired,
+  clickButton: PropTypes.func.isRequired
+}
 
 export default TotalPrice;

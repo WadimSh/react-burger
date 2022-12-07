@@ -1,7 +1,7 @@
 import {
-  GET_INGREDIENTS_SUCCESS,
   GET_INGREDIENTS_REQUEST,
-  GET_INGREDIENTS_FAILED,
+  GET_INGREDIENTS_SUCCESS,
+  GET_INGREDIENTS_FAILED
 } from '../actions/actions';
 
 const initialState = {
@@ -38,4 +38,4 @@ export const ingredientsReducer = (state = initialState, action) => {
       return state;
     }
   }
-}
+};

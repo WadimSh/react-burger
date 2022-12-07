@@ -5,7 +5,7 @@ import {
 
 const initialState = {
   modal: false,
-  ingredient: {},
+  ingredient: {}
 };
 
 export const ingredientReducer = (state = initialState, action) => {
@@ -28,4 +28,4 @@ export const ingredientReducer = (state = initialState, action) => {
       return state;
     }
   }
-}
+};

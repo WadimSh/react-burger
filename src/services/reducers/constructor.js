@@ -1,9 +1,8 @@
 import {
+  ADD_BUN,
   ADD_INGREDIENT,
-  RESET_INGREDIENT,
   MOVE_INGREDIENT,
   DELETE_INGREDIENT,
-  ADD_BUN,
 } from '../actions/actions';
 
 const initialState = {
@@ -25,13 +24,6 @@ export const burgerReducer = (state = initialState, action) => {
         ingredients: [...state.ingredients, action.data]
       }
     }
-    case RESET_INGREDIENT: {
-      return {
-        ...state,
-        ingredients: [],
-        bun: {}
-      }
-    }
     case MOVE_INGREDIENT: {
       const dragIngredient = [...state.ingredients];
       dragIngredient.splice(action.data.dragIndex, 0, dragIngredient.splice(action.data.hoverIndex, 1)[0]);
@@ -44,11 +36,10 @@ export const burgerReducer = (state = initialState, action) => {
       return {
         ...state,
         ingredients: [...state.ingredients].filter((item) => item.id !== action.id)
-        
       }
     }
     default: {
       return state;
     }
   }
-}
+};

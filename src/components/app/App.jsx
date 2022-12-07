@@ -24,8 +24,8 @@ function App() {
     <div className={style.App}>
       <AppHeader />
       <Main>
-        {isLoading && 'Загрузка...'}
-        {hasError && 'Произошла ошибка'}
+        {isLoading && "Загрузка..."}
+        {hasError && "Произошла ошибка"}
         {!isLoading && !hasError && (
           <DndProvider backend={HTML5Backend}>
             <BurgerIngredients />

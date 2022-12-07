@@ -31,7 +31,7 @@ function BurgerConstructor() {
     dispatch({ type: OPEN_ORDER_MODAL });
   }
 
-  const [{canDrop, isHover}, dropTarget] = useDrop({
+  const [, dropTarget] = useDrop({
     accept: "ingredient",
     drop(item) {
       if (item.element.type === "bun") {
@@ -65,10 +65,10 @@ function BurgerConstructor() {
           thumbnail={`${bun.image}`}
         />
       </div>) : (
-        <div className={style.unactiveTop}>Перетащите сюда булку</div>
+        <div className={style.top}>Перетащите сюда булку</div>
       )}
       {ingredients.length > 0 ? (
-        <ul className={style.stuffingList}>
+        <ul className={style.list}>
         {ingredients.map((item, index) => <BurgerConstructorIngredient item={item} index={index} key={item.id} />
         )}
       </ul>
@@ -86,7 +86,7 @@ function BurgerConstructor() {
           thumbnail={`${bun.image}`}
         />
       </div>) : (
-        <div className={style.unactiveBotton}>Перетащите сюда булку</div>
+        <div className={style.botton}>Перетащите сюда булку</div>
       )}      
 
       <TotalPrice

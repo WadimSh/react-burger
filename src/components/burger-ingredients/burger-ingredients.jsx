@@ -10,7 +10,7 @@ import { DELETE_INGREDIENT_DATA, ADD_INGREDIENT_DATA } from '../../services/acti
 import style from './burger-ingredients.module.css';
 
 function BurgerIngredients() {
-  const [current, setCurrent] = useState('bun');
+  const [current, setCurrent] = useState("bun");
   const [bunRef, bunInView] = useInView();
   const [sauceRef, sauceInView] = useInView();
   const [mainRef, mainInView] = useInView();
@@ -18,9 +18,9 @@ function BurgerIngredients() {
   const dispatch = useDispatch();
   const { modal } = useSelector((store) => store.ingredientData);
 
-  const clickTab = (type) => {
-    setCurrent(type);
-    document.getElementById(type).scrollIntoView({ behavior: "smooth", block: "start" });
+  const clickTab = (e) => {
+    setCurrent(e);
+    document.getElementById(e).scrollIntoView({ behavior: "smooth", block: "start" });
   };
 
   const handleIngredientScroll = () => {
@@ -41,7 +41,8 @@ function BurgerIngredients() {
 
   useEffect(() => {
     handleIngredientScroll();
-  }, [bunInView, sauceInView, mainInView]);
+  },
+  [bunInView, sauceInView, mainInView]);
 
   const handleElement = (ingredient) => {
     dispatch({ type: ADD_INGREDIENT_DATA, ingredient });
@@ -62,22 +63,22 @@ function BurgerIngredients() {
       <div className={style.tabs}>
         <Tab
           value="bun"
-          active={current === 'bun'}
-          onClick={(e) => clickTab(e, 'bun')}
+          active={current === "bun"}
+          onClick={(e) => clickTab(e)}
         >
           Булки
         </Tab>
         <Tab
           value="sauce"
-          active={current === 'sauce'}
-          onClick={(e) => clickTab(e, 'sauce')}
+          active={current === "sauce"}
+          onClick={(e) => clickTab(e)}
         >
           Соусы
         </Tab>
         <Tab
           value="main"
-          active={current === 'main'}
-          onClick={(e) => clickTab(e, 'main')}
+          active={current === "sauce"}
+          onClick={(e) => clickTab(e)}
         >
           Начинки
         </Tab>
@@ -85,20 +86,20 @@ function BurgerIngredients() {
       <div className={style.list}>
         <BurgerIngredientsBlock
           tabRef={bunRef}
-          type='bun'
-          name='Булки'
+          type="bun"
+          name="Булки"
           handleElement={handleElement}
         />
         <BurgerIngredientsBlock
           tabRef={sauceRef}
-          type='sauce'
-          name='Соусы'
+          type="sauce"
+          name="Соусы"
           handleElement={handleElement}
         />
         <BurgerIngredientsBlock
-          type='main'
           tabRef={mainRef}
-          name='Начинки'
+          type="main"
+          name="Начинки"
           handleElement={handleElement}
         />
       </div>
