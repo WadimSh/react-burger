@@ -10,7 +10,7 @@ function BurgerIngredientsBlock({ type, name, tabRef, handleElement }) {
    
   return (
     <>
-      <h2 className={style.title} ref={tabRef}>{name}</h2>
+      <h2 className={style.title} ref={tabRef} id={type}>{name}</h2>
       <div className={style.grid}>
         {
           data.filter(item => item.type === type).map((element, index) => (

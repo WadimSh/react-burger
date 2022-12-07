@@ -1,4 +1,5 @@
-import { useState, useRef } from 'react';
+import { useState, useEffect } from 'react';
+import { useInView } from "react-intersection-observer";
 import { useDispatch, useSelector } from "react-redux";
 
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components';
@@ -10,17 +11,37 @@ import style from './burger-ingredients.module.css';
 
 function BurgerIngredients() {
   const [current, setCurrent] = useState('bun');
-  const bunRef = useRef();
-  const sauceRef = useRef();
-  const mainRef = useRef();
-
+  const [bunRef, bunInView] = useInView();
+  const [sauceRef, sauceInView] = useInView();
+  const [mainRef, mainInView] = useInView();
+ 
   const dispatch = useDispatch();
   const { modal } = useSelector((store) => store.ingredientData);
 
-  const clickTab = (evt, ref) => {
-    setCurrent(evt);
-    ref.current.scrollIntoView({ behavior: "smooth", block: "start" });
+  const clickTab = (type) => {
+    setCurrent(type);
+    document.getElementById(type).scrollIntoView({ behavior: "smooth", block: "start" });
   };
+
+  const handleIngredientScroll = () => {
+    switch (true) {
+      case bunInView:
+        setCurrent("bun");
+        break;
+      case sauceInView:
+        setCurrent("sauce");
+        break;
+      case mainInView:
+        setCurrent("main");
+        break;
+      default:
+        break;
+    }
+  };
+
+  useEffect(() => {
+    handleIngredientScroll();
+  }, [bunInView, sauceInView, mainInView]);
 
   const handleElement = (ingredient) => {
     dispatch({ type: ADD_INGREDIENT_DATA, ingredient });
@@ -42,21 +63,21 @@ function BurgerIngredients() {
         <Tab
           value="bun"
           active={current === 'bun'}
-          onClick={(evt) => clickTab(evt, bunRef)}
+          onClick={(e) => clickTab(e, 'bun')}
         >
           Булки
         </Tab>
         <Tab
           value="sauce"
           active={current === 'sauce'}
-          onClick={(evt) => clickTab(evt, sauceRef)}
+          onClick={(e) => clickTab(e, 'sauce')}
         >
           Соусы
         </Tab>
         <Tab
           value="main"
           active={current === 'main'}
-          onClick={(evt) => clickTab(evt, mainRef)}
+          onClick={(e) => clickTab(e, 'main')}
         >
           Начинки
         </Tab>

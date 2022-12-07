@@ -23,7 +23,6 @@ function BurgerConstructor() {
   
   useEffect(() => {
     const totalPrice = ingredients.reduce((total, current) => total + current.price, bun._id ? bun.price * 2 : 0);
-    console.log(totalPrice)
     setTotal(totalPrice);
   }, [bun, ingredients]);
 
@@ -32,7 +31,7 @@ function BurgerConstructor() {
     dispatch({ type: OPEN_ORDER_MODAL });
   }
 
-  const [, dropTarget] = useDrop({
+  const [{canDrop, isHover}, dropTarget] = useDrop({
     accept: "ingredient",
     drop(item) {
       if (item.element.type === "bun") {
@@ -46,10 +45,9 @@ function BurgerConstructor() {
           data: { ...item.element, id: Date.now() },
         });
       }
-    },
+    }
   });
 
-  
   return (
     <section className={style.section} ref={dropTarget}>
       {modal && (
