@@ -77,7 +77,7 @@ function BurgerIngredients() {
         </Tab>
         <Tab
           value="main"
-          active={current === "sauce"}
+          active={current === "main"}
           onClick={(e) => clickTab(e)}
         >
           Начинки
