@@ -7,7 +7,6 @@ import AppHeader from '../app-header/app-header';
 import Main from '../main/main';
 import BurgerIngredients from '../burger-ingredients/burger-ingredients';
 import BurgerConstructor from '../burger-constructor/burger-constructor';
-
 import { getIngredientsBurger } from '../../services/actions/actions';
 import style from './App.module.css';
 
