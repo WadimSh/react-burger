@@ -14,18 +14,16 @@ function TotalPrice({ totalPrice, clickButton }) {
         <CurrencyIcon
           type="primary"
         />
-      </div>
-        <Button
-          htmlType="button"
-          type="primary"
-          size="large"
-          onClick={clickButton}
-          disabled={logic}
-        >
-			    Оформить заказ
-			  </Button>
-      
-      
+    </div>
+      <Button
+        htmlType="button"
+        type="primary"
+        size="large"
+        onClick={clickButton}
+        disabled={logic}
+      >
+		  Оформить заказ
+		  </Button>
     </div>
   )
 }
