@@ -1,39 +1,63 @@
-import { useMemo } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import { useDrop } from "react-dnd";
 
 import { ConstructorElement } from "@ya.praktikum/react-developer-burger-ui-components";
 import BurgerConstructorIngredient from '../burger-constructor-ingredient/burger-constructor-ingredient';
 import TotalPrice from '../total-price/total-price';
 import Modal from '../modal/modal';
 import OrderDetails from '../order-details/order-details';
-import { postOrderBurger, OPEN_ORDER_MODAL, CLOSE_ORDER_MODAL } from '../../services/actions/actions';
+import { postOrderBurger, OPEN_ORDER_MODAL, CLOSE_ORDER_MODAL, ADD_BUN, ADD_INGREDIENT } from '../../services/actions/actions';
 import style from './burger-constructor.module.css';
 
 function BurgerConstructor() {
   const dispatch = useDispatch();
   const { bun, ingredients } = useSelector((store) => store.currentBurger);
   const { modal } = useSelector((store) => store.orderNumber);
+  const [total, setTotal] = useState(0);
 
   const clickButton = () => {
     dispatch({ type: CLOSE_ORDER_MODAL });
   };
   const indexIngredients = useMemo(() => [bun, ...ingredients].map((item) => item._id), [bun, ingredients]);
   
-  const totalPrice = useMemo(() =>(bun && ingredients) > 0 ? ingredients.reduce((total, current) => total + current.price, bun.price * 2) : 0);
-   
+  useEffect(() => {
+    const totalPrice = ingredients.reduce((total, current) => total + current.price, bun._id ? bun.price * 2 : 0);
+    console.log(totalPrice)
+    setTotal(totalPrice);
+  }, [bun, ingredients]);
+
   const handleOrder = () => {
     dispatch(postOrderBurger(indexIngredients));
     dispatch({ type: OPEN_ORDER_MODAL });
   }
 
+  const [, dropTarget] = useDrop({
+    accept: "ingredient",
+    drop(item) {
+      if (item.element.type === "bun") {
+        dispatch({
+          type: ADD_BUN,
+          data: { ...item.element, id: Date.now() },
+        });
+      } else {
+        dispatch({
+          type: ADD_INGREDIENT,
+          data: { ...item.element, id: Date.now() },
+        });
+      }
+    },
+  });
+
+  
   return (
-    <section className={style.section}>
+    <section className={style.section} ref={dropTarget}>
       {modal && (
         <Modal onClose={clickButton} header={" "}>
           <OrderDetails />
         </Modal>
       )}
-      {bun > 0 ? (
+      {bun._id ? (
         <div className={style.bun}>
         <ConstructorElement
           type="top"
@@ -47,14 +71,14 @@ function BurgerConstructor() {
       )}
       {ingredients.length > 0 ? (
         <ul className={style.stuffingList}>
-        {ingredients.map((item, index) => <BurgerConstructorIngredient ingredient={item} key={index} />
+        {ingredients.map((item, index) => <BurgerConstructorIngredient item={item} index={index} key={item.id} />
         )}
       </ul>
       ) : (
         <div className={style.unactive}>Перетащите сюда ингредиенты</div>
       )}
       
-      {bun > 0 ? (
+      {bun._id ? (
       <div className={style.bun}>
         <ConstructorElement
           type="bottom"
@@ -66,8 +90,9 @@ function BurgerConstructor() {
       </div>) : (
         <div className={style.unactiveBotton}>Перетащите сюда булку</div>
       )}      
+
       <TotalPrice
-       totalPrice={totalPrice}
+       totalPrice={total}
        clickButton={handleOrder}
       />
     </section>

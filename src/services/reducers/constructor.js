@@ -33,7 +33,7 @@ export const burgerReducer = (state = initialState, action) => {
       }
     }
     case MOVE_INGREDIENT: {
-      const dragIngredient = [...state.item];
+      const dragIngredient = [...state.ingredients];
       dragIngredient.splice(action.data.dragIndex, 0, dragIngredient.splice(action.data.hoverIndex, 1)[0]);
       return {
         ...state,
@@ -43,7 +43,8 @@ export const burgerReducer = (state = initialState, action) => {
     case DELETE_INGREDIENT: {
       return {
         ...state,
-        currentBurger: [...state.ingredients].filter((item) => item.id !== action.id)
+        ingredients: [...state.ingredients].filter((item) => item.id !== action.id)
+        
       }
     }
     default: {

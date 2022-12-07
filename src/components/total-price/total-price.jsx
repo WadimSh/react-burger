@@ -4,7 +4,7 @@ import { CurrencyIcon, Button } from "@ya.praktikum/react-developer-burger-ui-co
 import style from './total-price.module.css';
 
 function TotalPrice({ totalPrice, clickButton }) {
-  const logic = useMemo(() => totalPrice === 0 ? true : false);
+  const logic = useMemo(() => totalPrice === 0 ? true : false, [totalPrice]);
 
   return (
     <div className={style.total}>
